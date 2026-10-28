@@ -1,0 +1,14 @@
+{% extends "base.html" %}
+{% block title %}{{ pid }}{% endblock %}
+{% block content %}
+<h1>{{ pid }}</h1>
+{% if code %}<p>Label code: <code>{{ code }}</code></p>{% endif %}
+<table>
+  <tr><th>#</th><th>Step</th><th>Done by</th><th>Place</th><th>Note</th><th>Time (UTC)</th><th>Record fingerprint</th></tr>
+  {% for e in events %}
+  <tr><td>{{ e.seq }}</td><td>{{ e.action }}</td><td>{{ e.actor }}</td><td>{{ e.location }}</td><td>{{ e.note }}</td>
+      <td>{{ e.timestamp }}</td><td class="mono">{{ e.event_hash[:16] }}...</td></tr>
+  {% endfor %}
+</table>
+<p><a href="{{ url_for('dashboard') }}">Back to dashboard</a></p>
+{% endblock %}

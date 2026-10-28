@@ -1,0 +1,26 @@
+{% extends "base.html" %}
+{% block title %}Tamper demo{% endblock %}
+{% block content %}
+<h1>Tamper demo</h1>
+<div class="card">
+  <p>Press the button. The site makes a temporary copy of the database, secretly changes one old record in the copy,
+     and runs the integrity check before and after. Your real data is not touched.</p>
+  <form method="post">
+    <input type="hidden" name="csrf_token" value="{{ csrf }}">
+    <button class="primary">Attack a copy of the data</button>
+  </form>
+</div>
+{% if before %}
+<div class="card">
+  <p>Before the attack: {% if before[0] %}<span class="good">all records consistent</span>{% else %}<span class="badtext">problem found</span>{% endif %}</p>
+  <p>The attacker changes record #{{ target }}: the place <b>{{ old }}</b> becomes <b>Unknown Warehouse</b>.</p>
+  <p>After the attack:
+    {% if after[0] %}<span class="badtext">NOT detected (this should not happen)</span>
+    {% else %}<span class="good">tampering detected</span>{% endif %}</p>
+  <ul>{% for p in after[1] %}<li>{{ p }}</li>{% endfor %}</ul>
+  <p>The fingerprint of the edited record no longer matches its content, so the change cannot be hidden.</p>
+</div>
+{% elif request.method == 'POST' %}
+<div class="card"><p>Not enough records to run the demo yet.</p></div>
+{% endif %}
+{% endblock %}

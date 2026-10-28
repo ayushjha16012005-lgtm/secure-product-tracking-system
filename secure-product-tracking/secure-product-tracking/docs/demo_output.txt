@@ -1,0 +1,23 @@
+== 1. Normal journey
+registered SPT-5A208B33, label code E88CF00A7C
+  #1 REGISTERED by acme_factory  @ Noida Plant  hash=9c3c7f7ba490...
+  #2 SHIPPED    by acme_factory  @ Noida Plant  hash=481924c9f30f...
+  #3 RECEIVED   by delhi_hub     @ Delhi Hub    hash=612afc6edde6...
+  #4 SHIPPED    by delhi_hub     @ Delhi Hub    hash=99a821a3729e...
+  #5 RECEIVED   by city_store    @ Store 12     hash=550af98de498...
+  #6 SOLD       by city_store    @ Store 12     hash=cdfa177da1cd...
+customer verifies: {'authentic': True, 'state': 'SOLD', 'events': 6}
+
+== 2. Counterfeit label
+{'authentic': False, 'reason': 'label code does not match (possible counterfeit)'}
+
+== 3. Access control
+  city_store: blocked -> role 'retailer' is not allowed to 'register'
+  alice: blocked -> role 'customer' is not allowed to 'ship'
+  skipping steps blocked -> invalid step: REGISTERED -> SOLD
+
+== 4. Tamper attack on the database
+anchor (saved outside DB): 2ca999751e848fa82abd ...
+audit ok? False
+  - seq 3: content does not match its hash (edited)
+customer verify now: tracking history failed integrity check

@@ -1,0 +1,67 @@
+{
+  "classical_ciphers": {
+    "lengths": [
+      20,
+      40,
+      80,
+      160,
+      320
+    ],
+    "trials": 200,
+    "caesar_key_recovered_pct": [
+      91.5,
+      100.0,
+      100.0,
+      100.0,
+      100.0
+    ],
+    "substitution_letters_recovered_pct": [
+      15.90592320261438,
+      20.133624919909312,
+      28.144801733817594,
+      32.183401988183334,
+      33.142909132952504
+    ]
+  },
+  "sha256_avalanche": {
+    "samples": 2000,
+    "mean_bits_changed": 127.987,
+    "min": 100,
+    "max": 164,
+    "ideal": 128
+  },
+  "tamper_detection": {
+    "trials_per_attack": 200,
+    "chain_size": 300,
+    "detected": {
+      "edit_field": 200,
+      "delete_event": 200,
+      "edit_and_rehash": 200
+    },
+    "detection_pct": {
+      "edit_field": 100.0,
+      "delete_event": 100.0,
+      "edit_and_rehash": 100.0
+    }
+  },
+  "performance": {
+    "events": [
+      100,
+      500,
+      1000,
+      2000
+    ],
+    "append_one_event_ms": [
+      1.600029000030645,
+      2.318868000031671,
+      1.894608000043263,
+      2.5833650000208763
+    ],
+    "verify_full_chain_ms": [
+      15.414801000019906,
+      73.097104999988,
+      135.8155440000246,
+      237.44103299998187
+    ]
+  }
+}

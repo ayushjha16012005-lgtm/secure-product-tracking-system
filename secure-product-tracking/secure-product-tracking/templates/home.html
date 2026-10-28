@@ -1,0 +1,33 @@
+{% extends "base.html" %}
+{% block content %}
+<h1>Secure Product Tracking System</h1>
+<p>This project follows a product on its way from the factory to the customer and keeps a history
+that cannot be changed quietly. If someone edits an old record, the system notices.</p>
+
+<div class="grid">
+  <div class="card">
+    <h2>I am a customer</h2>
+    <p>Type the product ID and the code printed on the package to check if the product is genuine and see where it has been.</p>
+    <a class="button" href="{{ url_for('verify') }}">Verify a product</a>
+  </div>
+  <div class="card">
+    <h2>I work in the supply chain</h2>
+    <p>Manufacturers, distributors and retailers log in to add the steps of a product: registered, shipped, received, sold.</p>
+    <a class="button" href="{{ url_for('login') }}">Log in</a>
+  </div>
+  <div class="card">
+    <h2>Show me it working</h2>
+    <p>Try an attack on a copy of the data and watch the system catch it.</p>
+    <a class="button" href="{{ url_for('tamper_demo') }}">Tamper demo</a>
+  </div>
+</div>
+
+<h2>How it works in simple words</h2>
+<ol class="steps">
+  <li>Each step in a product's life is saved as a record (what, where, when, who).</li>
+  <li>Every record stores a fingerprint (SHA-256 hash) of the record before it, so the records are linked like a chain.</li>
+  <li>The person who adds a record also signs it with a private key, so we know who did it.</li>
+  <li>If anybody changes an old record, its fingerprint no longer matches and the check fails.</li>
+  <li>Each role can only do its own job. A shop cannot create a new product, a customer cannot ship anything.</li>
+</ol>
+{% endblock %}

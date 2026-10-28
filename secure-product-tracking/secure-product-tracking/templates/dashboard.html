@@ -1,0 +1,52 @@
+{% extends "base.html" %}
+{% block title %}Dashboard{% endblock %}
+{% block content %}
+<h1>Dashboard</h1>
+<p>You are logged in as <b>{{ user }}</b> ({{ role }}).</p>
+
+<div class="grid">
+{% if 'register' in actions %}
+  <div class="card">
+    <h2>Register a new product</h2>
+    <form method="post" action="{{ url_for('action', name='register') }}">
+      <input type="hidden" name="csrf_token" value="{{ csrf }}">
+      <label>Product name</label><input name="name" required>
+      <label>Batch</label><input name="batch" required>
+      <label>Location</label><input name="location" required>
+      <button class="primary">Register</button>
+    </form>
+  </div>
+{% endif %}
+{% for a in actions if a != 'register' %}
+  <div class="card">
+    <h2>{{ {'ship':'Ship a product','receive':'Receive a product','sell':'Sell a product'}[a] }}</h2>
+    {% if ready[a] %}
+    <form method="post" action="{{ url_for('action', name=a) }}">
+      <input type="hidden" name="csrf_token" value="{{ csrf }}">
+      <label>Product</label>
+      <select name="product_id">
+        {% for p in ready[a] %}<option value="{{ p.product_id }}">{{ p.product_id }} - {{ p.name }} ({{ p.state }})</option>{% endfor %}
+      </select>
+      <label>Location</label><input name="location" required>
+      <label>Note (optional)</label><input name="note">
+      <button class="primary">Save step</button>
+    </form>
+    {% else %}<p>No product is waiting for this step.</p>{% endif %}
+  </div>
+{% endfor %}
+</div>
+
+{% if not actions %}
+<div class="card"><p>Your role can only view products{% if role == 'admin' %} and run the audit{% endif %}.</p></div>
+{% endif %}
+
+<h2>All products</h2>
+<table>
+  <tr><th>Product ID</th><th>Name</th><th>Batch</th><th>Status</th><th></th></tr>
+  {% for p in products %}
+  <tr><td class="mono">{{ p.product_id }}</td><td>{{ p.name }}</td><td>{{ p.batch }}</td>
+      <td><span class="tag">{{ p.state }}</span></td>
+      <td><a href="{{ url_for('product', product_id=p.product_id) }}">history</a></td></tr>
+  {% else %}<tr><td colspan="5">No products yet.</td></tr>{% endfor %}
+</table>
+{% endblock %}

@@ -1,0 +1,22 @@
+{% extends "base.html" %}
+{% block title %}Audit{% endblock %}
+{% block content %}
+<h1>Audit</h1>
+<div class="card">
+  <p>The system just re-checked all <b>{{ checked }}</b> records from the start: links, fingerprints and signatures.</p>
+  {% if ok %}<p class="good">Everything is consistent. No tampering found.</p>
+  {% else %}<p class="badtext">Tampering detected:</p><ul>{% for p in problems %}<li>{{ p }}</li>{% endfor %}</ul>{% endif %}
+</div>
+<div class="card">
+  <h2>Anchor (latest fingerprint)</h2>
+  <p class="mono">{{ anchor }}</p>
+  <p>Copy this and keep it somewhere outside the database (a note, an email). Later, paste it below.
+     If the newest records were deleted, the old anchor will be missing from the chain and the audit will say so.</p>
+  <form method="post">
+    <input type="hidden" name="csrf_token" value="{{ csrf }}">
+    <label>Earlier anchor to check</label>
+    <input name="anchor" value="{{ anchor_in }}">
+    <button class="primary">Run audit again</button>
+  </form>
+</div>
+{% endblock %}

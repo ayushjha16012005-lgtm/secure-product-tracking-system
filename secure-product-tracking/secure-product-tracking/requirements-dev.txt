@@ -1,0 +1,3 @@
+-r requirements.txt
+matplotlib>=3.8        # for experiments/ graphs
+playwright>=1.40       # only to retake screenshots (optional)

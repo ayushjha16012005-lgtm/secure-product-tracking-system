@@ -1,0 +1,32 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>{% block title %}Secure Product Tracking{% endblock %}</title>
+  <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+<header>
+  <div><a class="brand" href="{{ url_for('home') }}">Secure Product Tracking</a>
+    <a href="{{ url_for('verify') }}">Verify a product</a>
+    <a href="{{ url_for('tamper_demo') }}">Tamper demo</a>
+    {% if user %}<a href="{{ url_for('dashboard') }}">Dashboard</a>{% endif %}
+    {% if role == 'admin' %}<a href="{{ url_for('audit') }}">Audit</a>{% endif %}
+  </div>
+  <div>
+    {% if user %}
+      <span>{{ user }} <span class="tag">{{ role }}</span></span>
+      <form method="post" action="{{ url_for('logout') }}"><input type="hidden" name="csrf_token" value="{{ csrf }}"><button>Log out</button></form>
+    {% else %}<a href="{{ url_for('login') }}">Log in</a>{% endif %}
+  </div>
+</header>
+<main>
+  {% for category, message in get_flashed_messages(with_categories=true) %}
+    <div class="msg {{ category }}">{{ message }}</div>
+  {% endfor %}
+  {% block content %}{% endblock %}
+</main>
+<footer>PBL project - Cryptography (CCSCY0301), NIET Greater Noida - Ayush Jha</footer>
+</body>
+</html>

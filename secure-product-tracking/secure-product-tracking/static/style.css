@@ -1,0 +1,28 @@
+:root { --blue:#1f3a6e; --light:#eef3fb; --green:#1d7a46; --red:#b3261e; --amber:#8a5a00; }
+* { box-sizing: border-box; }
+body { font-family: Arial, Helvetica, sans-serif; margin:0; background:#f6f7fa; color:#222; line-height:1.5; }
+header { background:var(--blue); color:#fff; padding:12px 24px; display:flex; align-items:center; justify-content:space-between; flex-wrap:wrap; gap:8px; }
+header a { color:#fff; text-decoration:none; margin-right:16px; }
+header .brand { font-weight:bold; font-size:18px; }
+header form { display:inline; }
+header button { background:transparent; border:1px solid #fff; color:#fff; padding:4px 10px; cursor:pointer; border-radius:4px; }
+main { max-width:960px; margin:24px auto; padding:0 16px; }
+h1 { color:var(--blue); margin-top:0; } h2 { color:var(--blue); margin-top:28px; }
+.card { background:#fff; border:1px solid #dde3ee; border-radius:8px; padding:16px 20px; margin-bottom:16px; }
+.grid { display:grid; grid-template-columns:repeat(auto-fit,minmax(260px,1fr)); gap:16px; }
+label { display:block; margin:10px 0 4px; font-weight:bold; font-size:14px; }
+input, select { width:100%; padding:8px; border:1px solid #b9c2d3; border-radius:4px; font-size:15px; }
+button.primary, a.button { display:inline-block; background:var(--blue); color:#fff; border:none; padding:9px 18px; margin-top:12px; border-radius:4px; cursor:pointer; font-size:15px; text-decoration:none; }
+table { width:100%; border-collapse:collapse; background:#fff; font-size:14px; }
+th, td { border:1px solid #dde3ee; padding:7px 9px; text-align:left; vertical-align:top; }
+th { background:var(--light); }
+code, .mono { font-family:Consolas,monospace; font-size:13px; word-break:break-all; }
+.msg { padding:10px 14px; border-radius:6px; margin-bottom:10px; }
+.msg.ok { background:#e3f4ea; border:1px solid #9fd3b5; } .msg.bad { background:#fdeceb; border:1px solid #efb0ab; }
+.msg.warn { background:#fff4dc; border:1px solid #ecce85; }
+.good { color:var(--green); font-weight:bold; } .badtext { color:var(--red); font-weight:bold; }
+.tag { display:inline-block; padding:2px 8px; border-radius:10px; background:var(--light); font-size:12px; }
+footer { text-align:center; color:#667; font-size:13px; padding:24px; }
+ol.steps li { margin-bottom:6px; }
+header .tag { background:rgba(255,255,255,.22); color:#fff; margin-left:4px; }
+.card h2 { margin-top:4px; }

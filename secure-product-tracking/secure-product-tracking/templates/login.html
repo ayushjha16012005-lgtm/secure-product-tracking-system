@@ -1,0 +1,25 @@
+{% extends "base.html" %}
+{% block title %}Log in{% endblock %}
+{% block content %}
+<h1>Log in</h1>
+<div class="card">
+  <form method="post">
+    <input type="hidden" name="csrf_token" value="{{ csrf }}">
+    <label for="username">Username</label>
+    <input id="username" name="username" required autocomplete="username">
+    <label for="password">Password</label>
+    <input id="password" name="password" type="password" required autocomplete="current-password">
+    <button class="primary">Log in</button>
+  </form>
+</div>
+{% if demo %}
+<div class="card">
+  <h2>Demo accounts</h2>
+  <p>These accounts exist only because the demo data is switched on. Password for all of them: <code>{{ demo_password }}</code></p>
+  <table>
+    <tr><th>Username</th><th>Role</th></tr>
+    {% for name, r in demo_users %}<tr><td>{{ name }}</td><td>{{ r }}</td></tr>{% endfor %}
+  </table>
+</div>
+{% endif %}
+{% endblock %}

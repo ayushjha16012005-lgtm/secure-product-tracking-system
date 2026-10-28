@@ -1,0 +1,15 @@
+services:
+  - type: web
+    name: secure-product-tracking
+    runtime: python
+    buildCommand: pip install -r requirements.txt
+    startCommand: gunicorn wsgi:app --workers 1 --threads 4 --bind 0.0.0.0:$PORT
+    envVars:
+      - key: SECRET_KEY
+        generateValue: true
+      - key: PRODUCTION
+        value: "1"
+      - key: SEED_DEMO
+        value: "1"
+      - key: PYTHON_VERSION
+        value: "3.12.3"
