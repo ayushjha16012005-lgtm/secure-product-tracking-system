@@ -6,7 +6,7 @@ from quiet changes. If someone edits an old record, the system notices.
 PBL project for **Cryptography (CCSCY0301)**, B.Tech CSE (Cyber Security), NIET Greater Noida.
 Student: Ayush Jha. Faculty: Dr. Rashmi Sharma. SDG 9 and SDG 12.
 
-![home page](docs/screenshots/01_home.png)
+
 
 ## Why this project
 
@@ -41,15 +41,6 @@ so the change shows. My system does the same thing with computer records:
 There is also a **Tamper demo** page. It makes a temporary copy of the data, edits one old record
 in the copy, and shows the check failing. The real data is never touched.
 
-## Screenshots
-
-| Verify a genuine product | Fake label code |
-|---|---|
-| ![genuine](docs/screenshots/02_verify_genuine.png) | ![fake](docs/screenshots/03_verify_fake_code.png) |
-
-| Manufacturer dashboard | Audit after someone edited the database |
-|---|---|
-| ![dashboard](docs/screenshots/04_dashboard_manufacturer.png) | ![tampered](docs/screenshots/07_audit_tampered.png) |
 
 ## Run it on your computer
 
@@ -77,7 +68,6 @@ Password for all of them is `demo1234`:
 
 To see a full walkthrough in the terminal instead of the website: `python demo.py`
 
-To put it online, read [DEPLOY.md](DEPLOY.md).
 
 ## How the files are arranged
 
